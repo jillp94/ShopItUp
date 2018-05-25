@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+{% extends "top_banner.html" %}
+{% block title %}Checkout{% endblock %}
+{% block head %}
+<style>
+   a:link, a:visited {
+   text-decoration: none;
+   }
+</style>
+{{super()}}
+<script src={{url_for('static', filename='js/deliveryOptions.js') }}></script>
+{% endblock %}
+{% block content %}
+<div class="w3-display-container w3-margin">
+   <img src={{url_for('static', filename='uploads/back1.jpg')}} class="w3-opacity bg" />
+   <div class="w3-content w3-card w3-display-middle w3-padding w3-light-grey" style="margin-top:0px;">
+      <div class="w3-container w3-red">
+         <h2 class="w3-center">Checkout</h2>
+      </div>
+      <div class="w3-container w3-red w3-card w3-margin" style="opacity:0.6">
+         <h3 class="w3-center">Billing Information</h3>
+      </div>
+      <table border="1" class="w3-table-all w3-card-4">
+         <tr>
+            <th>Credit Card<br>Number</th>
+            <th>CCV</th>
+            <th>Exp Date</th>
+            <th>Billing<br>Address</th>
+         </tr>
+         <tr>
+            <div>
+               <td >
+                  {{billingData[0]}}
+               </td>
+               <td >
+                  {{billingData[1]}}
+               </td>
+               <td >
+                  {{billingData[2]}}
+               </td>
+               <td width="150">
+                  {{billingData[3]}} {{billingData[4]}}, {{billingData[5]}}</br> {{billingData[6]}}
+               </td>
+            </div>
+         </tr>
+      </table>
+      <div class="w3-container w3-red w3-card w3-margin" style="opacity:0.6">
+         <h3 class="w3-center">Product Information</h3>
+      </div>
+      {% if has_items %}
+      <table border="1" class="w3-table-all w3-card-4">
+         <tr>
+            <th>Product</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Item<br>Total</th>
+         </tr>
+         {% for row in products %}
+         <tr>
+            <td><img src={{url_for('static', filename='uploads/'+row[3])}} class="w3-border w3-padding" style="width:30%; height:60px"/></td>
+            <td>{{row[1]}}</td>
+            <td>${{row[2]}}</td>
+            </p>
+            <td>{{row[4]}}</td>
+            <td>${{row[5]}}</td>
+         </tr>
+         {% endfor %}
+      </table>
+      <div class="w3-container w3-center w3-margin w3-red w3-card" style="opacity:0.6">
+         {% if isHomeDeliver %}
+         <span>Total</span> : ${{subTotal}} +
+         <span>Shipping</span> : ${{shipping}}
+         {% endif %}
+         <h3>SubTotal: ${{totalPrice}}</h3>
+      </div>
+      {% endif %}
+      <div class="w3-bar w3-center w3-card">
+         <button class="w3-bar-item w3-button w3-round w3-block w3-grey" style="width:50%"><a href="/receipt">Looks Good!</a></button>
+         {% if isGuest %}
+         <button class="w3-bar-item w3-button w3-round w3-block w3-grey" style="width:50%"><a href="/">Keep Shopping</a></button>
+         {% else %}
+         <button class="w3-bar-item w3-button w3-round w3-block w3-grey" style="width:50%"><a href="/account/profile">I need to fix my profile</a></button>
+         {% endif %}
+      </div>
+   </div>
+</div>
+<footer class="w3-padding-32 w3-red w3-center w3-margin-top">
+   <h5>Find Us On</h5>
+   <div class="w3-xlarge w3-padding-10">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+   </div>
+</footer>
+{% endblock %}

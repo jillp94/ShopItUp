@@ -1,0 +1,97 @@
+#tableItems {
+	margin-left: 10px;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#itemImage {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 200px;
+	width: 150px;
+	float: left;
+}
+
+#itemName {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 100px;
+	width: 200px;
+	float: left;
+}
+
+#titleName {
+	width: 200px;
+	float: left;
+}
+
+#titlePrice {
+	float: left;
+}
+
+#itemPrice {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 100px;
+	display: inline-block;
+}
+#itemTotal {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 100px;
+	display: inline-block;
+}
+
+#remove {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 100px;
+	display: inline-block;
+}
+#itemQuantity {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 100px;
+	display: inline-block;
+}
+#image {
+	height: 100px;
+	width: 80px;
+}
+
+#separator {
+	margin: 0px;
+	max-width: 300px;
+}
+
+#separator1 {
+	margin: 0px;
+	max-width: 300px;
+}
+
+#total {
+	padding-left: 280px;
+}
+
+#itemNameTag {
+	font-weight: bold;
+}
+
+#subtotal {
+	font-weight: bold;
+	font-size: 20px;
+}
+

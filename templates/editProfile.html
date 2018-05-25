@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+{% extends "top_banner.html" %}
+{% block title %}Edit Profile{% endblock %}
+{% block head %}
+<style>
+   #toppart{
+   margin-top: 135px!important;
+   }
+</style>
+{{super()}}
+{% endblock %}
+{% block content %}
+{% if (msg == "Error Occured!!") %}
+<div class="w3-panel w3-red w3-round">
+   <p class="w3-center">{{msg}}</p>
+</div>
+{% else %}
+<div class="w3-panel w3-pale-green w3-round">
+   <p class="w3-center">{{msg}}</p>
+</div>
+{% endif %}
+<div class="w3-display-container w3-margin">
+   <img src={{url_for('static', filename='uploads/back1.jpg')}} class="w3-opacity bg" />
+   <div class="w3-modal-content w3-display-middle w3-card-4 w3-margin-top" id="toppart" style="width:60%;top:30%;">
+      <div class="w3-container w3-center w3-red w3-card" style="padding-top:20px">
+         <h3 class="w3-center">Edit {{profileData[2]}}'s Profile </h3>
+      </div>
+      <form action="/updateProfile" method="POST">
+         <div class="w3-container w3-margin w3-card">
+            <div class="w3-row-padding" style="margin:8 -16px;">
+               <div class="w3-half">
+                  <div class="w3-container w3-red w3-margin" style="opacity: 0.6">
+                     <h4 class="w3-center">Personal Information</h4>
+                  </div>
+                  First Name: <input type="text" class="w3-input w3-border" name="firstName" value={{profileData[3]}}>
+                  Middle Name: <input type="text" class="w3-input w3-border" name="middleName" value={{profileData[4]}}>
+                  Last Name: <input type="text" class="w3-input w3-border" name="lastName" value={{profileData[5]}}>
+                  Address Line: <input type="text" class="w3-input w3-border" name="address" value={{profileData[6]}}>
+                  Zip Code: <input type="text" class="w3-input w3-border" name="zipcode" value={{profileData[7]}}>
+                  City: <input type="text" class="w3-input w3-border" name="city" value={{profileData[8]}}>
+                  State: <input type="text" class="w3-input w3-border" name="state" value={{profileData[9]}}>
+                  Phone Number: <input type="text" class="w3-input w3-border" name="phone" value={{profileData[10]}}>
+               </div>
+               <div class="w3-half">
+                  <div class="w3-container w3-red w3-margin" style="opacity: 0.6">
+                     <h4 class="w3-center">Billing Information</h4>
+                  </div>
+                  Credit Card Number: <input type="number" class="w3-input w3-border" name="ccn" value={{billingData[0]}}>
+                  CCV: <input min="100" max="999" type="number" class="w3-input w3-border" name="ccv" value={{billingData[1]}}>
+                  Exp Date: <input type="date" class="w3-input w3-border" name="expDate" value={{billingData[2]}}>
+                  Billing Address: <input type="text" class="w3-input w3-border" name="billingAddress" value={{billingData[3]}}>
+                  Billing City: <input type="text" class="w3-input w3-border" name="billingCity" value={{billingData[4]}}>
+                  Billing State: <input type="text" class="w3-input w3-border" name="billingState" value={{billingData[6]}}>
+                  Billing Zip: <input type="number" class="w3-input w3-border" name="billingZip" value={{billingData[5]}}>
+               </div>
+            </div>
+            <button class="w3-button w3-round w3-block w3-dark-grey w3-margin-top" type="submit" value="Save" >Save</button>
+         </div>
+   </div>
+   </form>
+</div>
+</div>
+<footer class="w3-padding-32 w3-red w3-center w3-margin-top">
+   <h5>Find Us On</h5>
+   <div class="w3-xlarge w3-padding-10">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+   </div>
+</footer>
+{% endblock %}

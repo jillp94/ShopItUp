@@ -1,0 +1,93 @@
+<!DOCTYPE HTML> {% extends "top_banner.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+<style>
+   #divisions {
+   margin-top: 60px!important;
+   }
+</style>
+{{super()}} {% endblock %} {% block content %}
+<div class="w3-content w3-section" style="max-width:1500px;">
+   <img class="w3-image mySlides" src="/static/uploads/f0.jpg" style="min-width:1000px;width:1500px;height:800px;">
+   <img class="w3-image mySlides" src="/static/uploads/f2.jpg" style="min-width:1000px;width:1500px;height:800px;">
+   <img class="w3-image mySlides" src="/static/uploads/f4.jpg" style="min-width:1000px;width:1500px;height:800px;">
+   <div class="w3-display-middle w3-padding">
+    <div class="w3-container w3-red" style="width:1500px;opacity:0.8">
+     <blockquote class="w3-panel w3-leftbar">
+         <p class="w3-xlarge">
+            <i>Life isn't perfect. But your outfit can be.<b><p class="w3-xxlarge"> ShopItUp!!!</p></b></i>
+         </p>
+      </blockquote>
+    </div>
+
+  </div>
+   <script>
+      var myIndex = 0;
+      carousel();
+
+      function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+              x[i].style.display = "none";
+          }
+          myIndex++;
+          if (myIndex > x.length) {
+              myIndex = 1
+          }
+          x[myIndex - 1].style.display = "block";
+          setTimeout(carousel, 4000); // Change image every 2 seconds
+      }
+   </script>
+</div>
+<div class="w3-content" id="divisions" style="max-width:1532px;">
+   <div class="w3-container w3-margin-top w3-center w3-panel w3-red" style="opacity: 0.8" id="depts">
+      <h2>Our Departments</h2>
+   </div>
+   <div class="w3-row-padding w3-padding-16">
+      {% for row_index in range(departmentData|count) %}
+      <div class="w3-third w3-margin-bottom w3-card">
+         <a href="/displayDepartment?depId={{departmentData[row_index][0]}}">
+         <img src={{url_for('static', filename='uploads/' + departmentData[row_index][2]) }} class="w3-border" id="deptImage" style="width:100%" />
+         </a>
+         <div class="w3-container w3-white">
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+   <div class="w3-container w3-margin-top w3-center w3-panel w3-red" style="opacity: 0.8" id="contact">
+      <h2>Contact</h2>
+   </div>
+   <div class="w3-container w3-margin-top w3-center w3-panel">
+      <p>If you have any questions, do not hesitate to ask us.</p>
+      <i class="fa fa-map-marker w3-text-red" style="width:30px"></i> Texas, US
+      <br>
+      <i class="fa fa-phone w3-text-red" style="width:30px"></i> Phone: +1 123-456-7890
+      <br>
+      <i class="fa fa-envelope w3-text-red" style="width:30px"> </i> Email: mail@mail.com
+      <br>
+      <form action="/home.html" target="_blank">
+         <p>
+            <input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name">
+         </p>
+         <p>
+            <input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required name="Email">
+         </p>
+         <p>
+            <input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message">
+         </p>
+         <p>
+            <button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button>
+         </p>
+      </form>
+   </div>
+</div>
+<footer class="w3-padding-32 w3-red w3-center w3-margin-top">
+   <h5>Find Us On</h5>
+   <div class="w3-xlarge w3-padding-10">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+   </div>
+</footer>
+{% endblock %}

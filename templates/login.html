@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+{% extends "top_banner.html" %}
+{% block title %}Log In{% endblock %}
+{% block head %}
+<style>
+   #toppart{
+   margin-top: 30px!important;
+   top:30%;
+   }
+   .bg {
+   /* The image used */
+   /* Full height */
+   height:100%
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   }
+</style>
+{{super()}}
+{% endblock %}
+{% block content %}
+<div class="w3-panel w3-pale-green w3-round">
+   <p class="w3-center"> {{error}} </p>
+</div>
+<div class="w3-display-container w3-margin">
+   <img src={{url_for('static', filename='uploads/back1.jpg')}} class="w3-opacity bg" />
+   <div class="w3-modal-content w3-card-4 w3-display-middle w3-margin-top" id="toppart" style="max-width:600px">
+      <div class="w3-container w3-red">
+         <h2 class="w3-center">Login</h2>
+      </div>
+      <div class="w3-center"><br>
+         <img src="/static/uploads/profilepic.png" alt="ProfilePicture" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+      <form class="w3-container" action="/login" method="POST">
+         <div class="w3-section">
+            <label><b>Email</b></label>
+            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="email" required>
+            <label><b>Password</b></label>
+            <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
+            <button class="w3-button w3-block w3-grey w3-section w3-padding" type="submit">Login</button>
+            <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me
+         </div>
+      </form>
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+         <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+         <span class="w3-right w3-padding w3-hide-small">Not yet Registered? <button type="button" class="w3-button w3-red">
+         <a href="/registrationForm">Register Here</a></button></span>
+      </div>
+   </div>
+</div>
+<footer class="w3-padding-32 w3-black w3-center w3-margin-top">
+   <h5>Find Us On</h5>
+   <div class="w3-xlarge w3-padding-10">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+   </div>
+</footer>
+{% endblock %}

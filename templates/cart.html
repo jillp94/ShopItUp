@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+{% extends "top_banner.html" %}
+{% block title %}Cart{% endblock %}
+{% block head %}
+<style>
+   #toppart{
+   margin-top: 105px!important;
+   }
+   .bg {
+   /* The image used */
+   /* Full height */
+   height:100%
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   }
+   #Noitem {
+   top: 10%;
+   }
+   #allItem {
+   top: 10%;
+   }
+   a:link, a:visited {
+   text-decoration: none;
+   }
+</style>
+{{super()}}
+<script src={{url_for('static', filename='js/quantityChanged.js') }}></script>
+{% endblock %}
+{% block content %}
+<div class="w3-display-container w3-margin">
+   <img src={{url_for('static', filename='uploads/back1.jpg')}} class="w3-opacity bg" />
+   <div class="w3-content w3-card w3-display-middle w3-padding w3-light-grey" id="toppart">
+      <div class="w3-container w3-red">
+         <h3 class="w3-center">Shopping Cart</h3>
+      </div>
+      <div class="w3-container w3-red w3-card w3-margin" style="opacity:0.6">
+         <h3 class="w3-center">Product Information</h3>
+      </div>
+      {% if has_items %}
+      <table border="1" class="w3-table-all w3-card-4">
+         <tr>
+            <th>Product</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Item<br>Total</th>
+         </tr>
+         {% for row in products %}
+         <tr>
+            <td><img src={{url_for('static', filename='uploads/'+row[3])}} class="w3-border w3-padding" style="width:30%; height:60px"/></td>
+            <td>{{row[1]}}</td>
+            <td>${{row[2]}}</td>
+            <td>
+               {% if reachedMax %}
+               {% else %}
+               <a href="/updateQuantity?productId={{row[0]}}&operation=add"> + </a>  {% endif %}{{row[4]}}
+               {% if row[4]|int() == 1 %}
+               {% else %}
+               <a href="/updateQuantity?productId={{row[0]}}&operation=minus"> - </a>
+               {% endif %}
+            </td>
+            <td>${{row[5]}}</td>
+            <td><button class="w3-btn w3-blue-grey"><a href="/removeFromCart?productId={{row[0]}}" >Remove All</a></button></td>
+         </tr>
+         {% endfor %}
+      </table>
+      <div class="w3-container w3-center w3-margin w3-red w3-card" style="opacity:0.6">
+         <h2>SubTotal: ${{totalPrice}}</h2>
+      </div>
+      {% if isGuest %}
+      <!-- <div class="w3-container w3-margin w3-card"> -->
+      <a href="/billing">
+      <button class="w3-button w3-round w3-block w3-grey w3-margin-top">Fill out Guest Billing Info</button></a>
+      {% else %}
+      <button class="w3-button w3-round w3-block w3-grey w3-margin-top">
+      <a href="/checkout?deliveryMethod=home">I want Home Delivery</a></button>
+      <button class="w3-button w3-round w3-block w3-grey w3-margin-top">
+      <a href="/checkout?deliveryMethod=store">I will Pick Up from Store</a></button>
+      {% endif %}
+      {% else %}
+      <div class="w3-content w3-card w3-padding w3-light-grey" id="NoItem">
+         <h3 class="w3-center">{{firstName}}, you have no items in your cart!</h3>
+      </div>
+      {% endif %}
+   </div>
+</div>
+<footer class="w3-padding-32 w3-red w3-center w3-margin-top">
+   <h5>Find Us On</h5>
+   <div class="w3-xlarge w3-padding-10">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+   </div>
+</footer>
+{% endblock %}

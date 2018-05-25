@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+{% extends "top_banner.html" %}
+{% block title %}Add Comments{% endblock %}
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href={{url_for('static', filename='css/productDescription.css') }} />
+<link rel="stylesheet" href={{url_for('static', filename='css/rating.css') }} />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+{% endblock %}
+{% block content %}
+{% if (msg == "Error Occured!!") %}
+<div class="w3-panel w3-red w3-round">
+   <p class="w3-center">{{msg}}</p>
+</div>
+{% else %}
+<div class="w3-panel w3-pale-green w3-round">
+   <p class="w3-center">{{msg}}</p>
+</div>
+{% endif %}
+<div class="w3-display-container w3-margin">
+   <img src={{url_for('static', filename='uploads/back1.jpg')}} class="w3-opacity bg" />
+   <div class="w3-modal-content w3-display-middle w3-card-4 w3-margin-top" id="toppart" style="width:60%;top:30%;">
+      <div class="w3-container w3-red">
+         <h2 class="w3-center">Add Rating and Comments for {{productName}}</h2>
+      </div>
+      <form action="/updateComment?productId={{request.args.get('productId')}}" method="POST" class="w3-container">
+         <center>
+            <div class="stars w3-section w3-center">
+               <input class="star star-5" id="star-5" type="radio" name="rating" value="5"/>
+               <label class="star star-5" for="star-5"></label>
+               <input class="star star-4" id="star-4" type="radio" name="rating" value="4"/>
+               <label class="star star-4" for="star-4"></label>
+               <input class="star star-3" id="star-3" type="radio" name="rating" value="3"/>
+               <label class="star star-3" for="star-3"></label>
+               <input class="star star-2" id="star-2" type="radio" name="rating" value="2"/>
+               <label class="star star-2" for="star-2"></label>
+               <input class="star star-1" id="star-1" type="radio" name="rating" value="1"/>
+               <label class="star star-1" for="star-1"></label>
+            </div>
+         </center>
+         <textarea rows="4" cols="50" type="text" name="comment" class="w3-input w3-border"></textarea>
+         <div>
+            <button class="w3-button w3-round w3-block w3-grey w3-margin-top w3-margin-bottom" type="submit">Add Rating and Comments</button>
+         </div>
+      </form>
+   </div>
+</div>
+<footer class="w3-padding-32 w3-red w3-center w3-margin-top">
+   <h5>Find Us On</h5>
+   <div class="w3-xlarge w3-padding-10">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+   </div>
+</footer>
+{% endblock %}

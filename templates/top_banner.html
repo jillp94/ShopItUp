@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <style>
+         * {
+         font-family: "Times New Roman", Times, serif;
+         }
+      </style>
+      {% block head %}
+      <title>{% block title %}{% endblock %}</title>
+      {% endblock %}
+   </head>
+   <body class="w3-light-grey" style="padding-bottom: 40px;">
+      <div class="w3-bar w3-white w3-large w3-left-align w3-large" >
+         <a href="/#home" class="w3-bar-item w3-button w3-hover-red w3-mobile" ><i class="fa fa-home w3-margin-right"></i>Home</a>
+         <a href="/#depts" class="w3-bar-item w3-button w3-hover-red w3-mobile">Departments</a>
+         <a href="/#contact" class="w3-bar-item w3-button w3-hover-red w3-mobile">Contact</a>
+         <a href="/advSearch" class="w3-bar-item w3-button w3-hover-red w3-mobile">Search Products <i class="fa fa-search"></i></a>
+         <a class="w3-bar-item w3-button w3-right w3-hover-red w3-mobile" href="/cart">
+         <i class="fa fa-shopping-cart w3-xxlarge"></i>
+        <!-- <span class="w3-badge">{{noOfItems}}</span> -->
+         </a>
+         <div class="w3-dropdown-hover w3-hide-small w3-right">
+            {% if loggedIn %}
+            <button class="w3-padding-large w3-button w3-hover-red" title="More">Hello {{firstName}}  <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+               <a href="/account/profile" class="w3-bar-item w3-button">My Profile</a>
+               <a href="/logout" class="w3-bar-item w3-button">Signout</a>
+            </div>
+            {% else %}
+            <button class="w3-padding-large w3-button" title="More">Hello Guest<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+               <a href="/loginForm" class="w3-bar-item w3-button w3-block w3-margin-top w3-center">Sign In</a>
+            </div>
+            {% endif %}
+         </div>
+      </div>
+      <div style="padding-top:0px;">{% block content %}{% endblock %}</div>
+   </body>
+</html>

@@ -1,0 +1,31 @@
+
+#itemImage {
+	height: 150px;
+}
+#department {
+    height: 150px;
+    width: 200px;
+}
+
+
+#productName {
+	text-align: center;
+	font-weight: bold;
+}
+
+#productPrice {
+	text-align: center;
+}
+
+#productRating {
+	text-align: center;
+}
+
+#itemInfo {
+    width: 200px;
+}
+
+.displayDepartments {
+	margin: 0px:
+	padding: 0px;
+}

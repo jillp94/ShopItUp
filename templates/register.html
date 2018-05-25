@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+{% extends "top_banner.html" %}
+{% block title %}Registration{% endblock %}
+{% block head %}
+<style>
+   #toppart{
+   margin-top: 205px!important;
+   }
+</style>
+{{super()}}
+<link rel="stylesheet" href={{url_for('static', filename='css/cart.css') }} />
+<link rel="stylesheet" href={{url_for('static', filename='css/productDescription.css') }} />
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/validateForm.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="w3-display-container w3-margin">
+<img src={{url_for('static', filename='uploads/back1.jpg')}} class="w3-opacity bg" />
+<div class="w3-modal-content w3-display-middle w3-card-4 w3-margin-top" id="toppart" style="width:60%;top:30%;">
+   <form action="/register" method="POST" onsubmit="return validate()">
+      <div class="w3-container w3-center w3-red w3-card" style="padding-top:20px">
+         <h3 class="w3-center">Register as a New user!!</h3>
+      </div>
+      <div class="w3-container w3-margin w3-card">
+         <div class="w3-row-padding" style="margin:8 -16px;">
+            <div class="w3-half">
+               <div class="w3-container w3-red w3-margin" style="opacity: 0.6">
+                  <h4 class="w3-center">Personal Information</h4>
+               </div>
+               Email:  <input class="w3-input w3-border" type="email" name="email">
+               User Name:  <input class="w3-input w3-border" type="text" name="userName">
+               Password:  <input class="w3-input w3-border" type="password" name="password" id="password">
+               Confirm Password:  <input class="w3-input w3-border" type="password" name="cpassword" id="cpassword">
+               First Name:  <input class="w3-input w3-border" type="text" name="firstName">
+               Middle Name:  <input class="w3-input w3-border" type="text" name="middleName">
+               Last Name:  <input class="w3-input w3-border" type="text" name="lastName">
+               Address Line:  <input class="w3-input w3-border" type="text" name="address">
+               Zip Code:  <input class="w3-input w3-border" min="10000" max="99999" type="number" name="zipcode">
+               City:  <input class="w3-input w3-border" type="text" name="city">
+               State:  <input class="w3-input w3-border" type="text" name="state">
+               Phone Number:  <input class="w3-input w3-border" type="number" name="phone">
+            </div>
+            <div class="w3-half">
+               <div class="w3-container w3-red w3-margin" style="opacity: 0.6">
+                  <h4 class="w3-center">Billing Information</h4>
+               </div>
+               Credit Card Number:  <input class="w3-input w3-border" type="number" name="ccn">
+               CCV:  <input class="w3-input w3-border" min="100" max="999" type="number" name="ccv">
+               Exp Date:  <input class="w3-input w3-border" type="date" name="exDate">
+               Billing Address:  <input class="w3-input w3-border" type="text" name="bAddress">
+               Billing City:  <input class="w3-input w3-border" type="text" name="bCity">
+               Billing State:  <input class="w3-input w3-border" type="text" name="bState">
+               Billing Zip:  <input class="w3-input w3-border" type="number" name="bZip">
+               <input class="w3-radio" type="radio" name="save" value="Yes" checked>Save My Billing Info.</br>
+               <input class="w3-radio" type="radio" name="save" value="No">Don't Save My Billing Info
+            </div>
+         </div>
+         <button class="w3-button w3-round w3-block w3-dark-grey w3-margin-top" type="submit" value="Register" >Register</button>
+         <button class="w3-button w3-round w3-block w3-grey w3-margin-top">
+         <a href="/loginForm">Login</a></button>
+         </center>
+   </form>
+   </div>
+</div>
+<footer class="w3-padding-32 w3-red w3-center w3-margin-top">
+   <h5>Find Us On</h5>
+   <div class="w3-xlarge w3-padding-10">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+   </div>
+</footer>
+{% endblock %}

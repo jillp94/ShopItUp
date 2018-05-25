@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% extends "top_banner.html" %}
+{% block title %}Billing{% endblock %}
+{% block head %}
+{{super()}}
+{% endblock %}
+{% block content %}
+<script src='static/js/validateEmail.js'></script>
+<script src={{url_for('static', filename='js/validateBilling.js') }}></script>
+<!--<script src='js/inputLengthValidation.js'></script>-->
+<script></script>
+<div class="w3-display-container w3-margin">
+   <img src={{url_for('static', filename='uploads/back1.jpg')}} class="w3-opacity bg" />
+   <div class="w3-content w3-section w3-card-4 w3-text-red w3-margin-top w3-display-middle w3-light-grey" style="width:900px;">
+      <form action="/updateGuestBilling" method="POST" class="w3-margin" name="form" onsubmit="return validateBilling();">
+         <div class="w3-container w3-red w3-margin" style="opacity: 0.8">
+            <h2 class="w3-center">Guest Billing Information</h2>
+         </div>
+         <div class="w3-container w3-red w3-margin" style="opacity: 0.5">
+            <h5 class="w3-center">We Accept: <i class="fa fa-cc-visa"></i> <i class="fa fa-cc-jcb"></i> <i class="fa fa-cc-mastercard"></i> <i class="fa fa-cc-paypal"></i></h5>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="firstName" type="text" placeholder="First Name" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="lastName" type="text" placeholder="Last Name" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="email" type="text" placeholder="Email" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-credit-card"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="ccn" type="text" pattern="\d*"  maxlength="16" placeholder="16 Digits Credit Card Number" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-credit-card"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="ccv" type="number" pattern="\d*" min="100" max="999" placeholder="3 Digits CCV Number" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-credit-card"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="expDate" type="date" placeholder="Expiration Date of Card" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-building"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="billingAddress" type="text" placeholder="Billing Address" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-map-marker"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="billingCity" type="text" placeholder="Billing City" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-map-marker"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="billingState" type="text" placeholder="Billing State" required>
+            </div>
+         </div>
+         <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-map-marker"></i></div>
+            <div class="w3-rest">
+               <input class="w3-input w3-border" name="billingZip" type="number" min="10000" max="99999" placeholder="Billing Zipcode" required>
+            </div>
+         </div>
+         <div>
+            <button class="w3-button w3-round w3-block w3-dark-grey w3-margin-top" type="submit" >Save</button>
+         </div>
+      </form>
+   </div>
+</div>
+<footer class="w3-padding-32 w3-red w3-center w3-margin-top">
+   <h5>Find Us On</h5>
+   <div class="w3-xlarge w3-padding-10">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+   </div>
+</footer>
+{% endblock %}

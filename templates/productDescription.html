@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+{% extends "top_banner.html" %}
+{% block title %}Product Details{% endblock %}
+{% block head %}
+<style>
+   a:link, a:visited {
+   text-decoration: none;
+   }
+</style>
+{{super()}}
+<link rel="stylesheet" href={{url_for('static', filename='css/productDescription.css') }} />
+{% endblock %}
+{% block content %}
+<div class="w3-display-container w3-margin">
+   <img src={{url_for('static', filename='uploads/back1.jpg')}} class="w3-opacity bg" />
+   <div class="w3-modal-content w3-display-middle w3-card-4 w3-margin-top" id="toppart" style="width:60%;top:50%;">
+      <div class="w3-container w3-red">
+         <h2 class="w3-center">Product Description</h2>
+      </div>
+      <div class="w3-container w3-margin w3-card">
+         <div class="w3-row-padding" style="margin:8 -16px;">
+            <div class="w3-third">
+               <div class="w3-center">
+                  <br>
+                  <img  src={{url_for('static', filename='uploads/'+data[4]) }} alt="Product" class="w3-border w3-padding" style="width:100%; height:200px">
+                  {% if isAvail %}
+                  <button class="w3-button w3-round w3-block w3-grey w3-margin-top w3-margin-bottom">
+                  <a href="/addToCart?productId={{request.args.get('productId')}}">Add to Cart</a></button>
+                  {% else %}
+                  <h3>This Item is Out of Stock!!</h3>
+                  {% endif %}
+               </div>
+            </div>
+            <div class="w3-rest">
+               <h6><b>Product Name: </b>{{data[1]}}</h6>
+               <h6><b>Price : </b>{{data[2]}}</h6>
+               <h6><b>Rating: </b>{{data[9]}}</h6>
+               <h6><b>Stock  : </b>{{data[5]}}</h6>
+               <h6><b>Brand :</b> {{data[3]}}</h6>
+               <h6><b>Description: </b>{{data[7]}}</h6>
+               {% if freeShip %}
+               <div class="w3-container w3-red" style="opacity:0.6">
+                  <h6 class="w3-center">Free Shipping Available on This Product!!!</h6>
+               </div>
+               {% endif %}
+            </div>
+         </div>
+      </div>
+      <div class="w3-container w3-margin w3-card">
+         <div class="w3-container w3-red" style="opacity:0.6">
+            <h5 class="w3-center">Rating & Comments Information</h5>
+         </div>
+         {% if isGuest %}
+         {% else %}
+         <button class="w3-button w3-round w3-block w3-grey w3-margin-top w3-margin-bottom">
+         <a href="/addComment?productId={{request.args.get('productId')}}">Add Comments and Rating</a>
+         </button>
+         {% endif %}
+         <table border="1" class="w3-table-all w3-card-4">
+            <tr>
+               <th>UserName</th>
+               <th>Rating</th>
+               <th>Comment</th>
+            </tr>
+            {% for row in commentData %}
+            <tr>
+               <td>{{row[0]}}</td>
+               <td>{{row[1]}}</td>
+               <td>{{row[2]}}</td>
+            </tr>
+            {% endfor %}
+         </table>
+      </div>
+
+   </div>
+</div>
+<footer class="w3-padding-32 w3-red w3-center w3-margin-top">
+         <h5>Find Us On</h5>
+         <div class="w3-xlarge w3-padding-10">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+         </div>
+</footer>
+{% endblock %}
